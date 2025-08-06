@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export TERMINAL=xterm
+export BROWSER=brave

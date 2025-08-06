@@ -1,0 +1,11 @@
+[submodule ".dotbot"]
+	path = .dotbot
+	url = https://github.com/anishathalye/dotbot
+[submodule "dotbot-include"]
+	path = .dotbot-plugin/dotbot-include
+	url = https://gitlab.com/gnfzdz/dotbot-include.git
+[submodule "dotbot"]
+	ignore = dirty
+[submodule ".dotbot-plugin/dotbot-include"]
+	path = .dotbot-plugin/dotbot-include
+	url = https://gitlab.com/gnfzdz/dotbot-include.git

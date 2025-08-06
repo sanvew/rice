@@ -1,0 +1,11 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- link:
+    ~/.config/polybar:
+      create: true
+      glob: true
+      path: './polybar/**'
+      exclude: [ '**/polybar.conf.yaml' ]

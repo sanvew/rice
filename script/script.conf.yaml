@@ -1,0 +1,14 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- create:
+    - ~/.local/bin
+
+- link:
+    ~/.local/bin:
+      create: true
+      glob: true
+      path: './script/**'
+      exclude: [ '**/script.conf.yaml' ]

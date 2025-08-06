@@ -1,13 +1,9 @@
-#
-# These things are run when an Openbox X Session is started.
-# You may place a similar script in $HOME/.config/openbox/autostart
-# to run user-specific things.
-#
+#!/bin/bash
 
-if [ -f "$XDG_CONFIG_HOME/polybar/launch.sh" ]; then
-    $XDG_CONFIG_HOME/polybar/launch.sh &
-elif [ -f "$HOME/.config/polybar/launch.sh" ]; then
-    $HOME/.config/polybar/launch.sh &
-elif [ -f "/etc/xdg/polybar/launch.sh" ]; then
-    /etc/xdg/polybar/launch.sh &
+OPENBOX_STARTUP_SCRIPTS_PATH="$XDG_CONFIG_HOME/openbox/startup"
+if [ -d "$OPENBOX_STARTUP_SCRIPTS_PATH" ]; then
+    for startup_script in "$OPENBOX_STARTUP_SCRIPTS_PATH"/*.sh; do
+        [ -x "$startup_script" ] && $startup_script & disown
+    done
 fi
+

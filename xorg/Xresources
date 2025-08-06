@@ -1,2 +1,2 @@
-XTerm*faceName: JetBrainsMonoNerdFont
-XTerm*faceSize: 12
+XTerm.*.faceName: JetBrains Mono NerdFont
+XTerm.*.faceSize: 12

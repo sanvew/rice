@@ -1,0 +1,11 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- link:
+    ~/.config/rofi:
+      create: true
+      glob: true
+      path: './rofi/**'
+      exclude: [ '**/rofi.conf.yaml' ]
