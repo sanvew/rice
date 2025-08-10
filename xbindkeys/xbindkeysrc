@@ -47,7 +47,7 @@
     Control+Shift + o
 
 ########################################
-# Media buttons keybindings            #
+# System keybindings                   #
 ########################################
 # Screenlock
 "$HOME/.local/bin/screenlock.sh"
