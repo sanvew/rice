@@ -1,8 +1,0 @@
-- defaults:
-    link:
-      create: true
-      relink: true
-
-- link:
-    ~/.xprofile: './xorg/xprofile'
-    ~/.Xresources: './xorg/Xresources'

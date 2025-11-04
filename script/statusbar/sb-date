@@ -1,0 +1,4 @@
+#!/bin/sh
+
+DATE_FORMAT='+%e/%m/%y'
+date $DATE_FORMAT

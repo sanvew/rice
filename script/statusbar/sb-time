@@ -1,0 +1,4 @@
+#!/bin/sh
+
+TIME_FORMAT='+%H:%M'
+date $TIME_FORMAT

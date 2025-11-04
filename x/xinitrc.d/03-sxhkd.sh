@@ -1,0 +1,1 @@
+../../sxhkd/autostart.sh

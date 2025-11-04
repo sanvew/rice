@@ -1,9 +1,0 @@
-#!/bin/bash
-
-OPENBOX_STARTUP_SCRIPTS_PATH="$XDG_CONFIG_HOME/openbox/startup"
-if [ -d "$OPENBOX_STARTUP_SCRIPTS_PATH" ]; then
-    for startup_script in "$OPENBOX_STARTUP_SCRIPTS_PATH"/*.sh; do
-        [ -x "$startup_script" ] && $startup_script & disown
-    done
-fi
-

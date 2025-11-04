@@ -1,8 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 set -e
 
-CONFIG="install.conf.yaml"
 DOTBOT_DIR=".dotbot"
 
 DOTBOT_BIN="bin/dotbot"
@@ -10,9 +9,17 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
 
-(cd "${DOTBOT_DIR}" && git submodule update --init --recursive)
+git submodule update --init --recursive
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" \
-  -d "${BASEDIR}" \
-  -p "${BASEDIR}/.dotbot-plugin/dotbot-include/include.py" \
-  -c "${CONFIG}" "${@}"
+MODULES_CONFIG=(
+    'x/x.conf.yaml'
+    'sxhkd/sxhkd.conf.yaml'
+    'script/script.conf.yaml'
+    'themes/themes.conf.yaml'
+    'gtk3/gtk3.conf.yaml'
+)
+
+for config_path in "${MODULES_CONFIG[@]}"; do
+    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "$config_path" "${@}"
+done
+

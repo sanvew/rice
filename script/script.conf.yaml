@@ -3,12 +3,13 @@
       create: true
       relink: true
 
-- create:
-    - ~/.local/bin
-
 - link:
     ~/.local/bin:
       create: true
       glob: true
       path: './script/**'
-      exclude: [ '**/script.conf.yaml' ]
+      exclude: [ '**/script.conf.yaml', '**/status-bar/**' ]
+    ~/.local/bin/statusbar:
+      create: true
+      glob: true
+      path: './script/statusbar/*'

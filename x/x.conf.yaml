@@ -1,0 +1,12 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- link:
+    ~/.xinitrc: './x/xinitrc'
+    ~/.config/X11/xinitrc.d:
+      create: true
+      glob: true
+      path: './x/xinitrc.d/**' 
+    ~/.xprofile: './x/xprofile'
