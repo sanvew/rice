@@ -1,0 +1,9 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- link:
+    '~/.config/fontconfig/fonts.conf': './fontconfig/fonts.conf'
+
+

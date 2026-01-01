@@ -13,6 +13,7 @@ git submodule update --init --recursive
 
 MODULES_CONFIG=(
     'x/x.conf.yaml'
+    'fontconfig/fontconfig.conf.yaml'
     'sxhkd/sxhkd.conf.yaml'
     'script/script.conf.yaml'
     'themes/themes.conf.yaml'
