@@ -1,0 +1,1 @@
+../../picom/autostart.sh

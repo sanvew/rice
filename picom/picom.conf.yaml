@@ -1,0 +1,9 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- link:
+    '~/.config/picom.conf': './picom/picom.conf'
+
+

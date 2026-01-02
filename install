@@ -3,24 +3,25 @@
 set -e
 
 DOTBOT_DIR=".dotbot"
-
 DOTBOT_BIN="bin/dotbot"
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BASEDIR="$(cd "$(dirname "$0")" && pwd -P)"
+echo $BASEDIR
 
 cd "${BASEDIR}"
 
 git submodule update --init --recursive
 
-MODULES_CONFIG=(
-    'x/x.conf.yaml'
-    'fontconfig/fontconfig.conf.yaml'
-    'sxhkd/sxhkd.conf.yaml'
-    'script/script.conf.yaml'
-    'themes/themes.conf.yaml'
-    'gtk3/gtk3.conf.yaml'
-)
+MODULE_CONFIGS="
+    x/x.conf.yaml
+    picom/picom.conf.yaml
+    fontconfig/fontconfig.conf.yaml
+    sxhkd/sxhkd.conf.yaml
+    script/script.conf.yaml
+    themes/themes.conf.yaml
+    gtk3/gtk3.conf.yaml
+"
 
-for config_path in "${MODULES_CONFIG[@]}"; do
+for config_path in $MODULE_CONFIGS; do
     "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "$config_path" "${@}"
 done
 

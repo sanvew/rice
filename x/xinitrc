@@ -1,10 +1,15 @@
 #!/bin/sh
 
+set -e
+
 X11_CONFIG_DIR="$XDG_CONFIG_HOME"/X11
 if [ -d "$X11_CONFIG_DIR"/xinitrc.d/ ]; then
     for f in "$X11_CONFIG_DIR"/xinitrc.d/*.sh; do
-        echo $f
-        [ -x "$f" ] && echo $f && $f & disown
+        if [ -L "$f" ] && [ -e "$f" ] && [ -x "$f" ]; then
+            $f & disown
+        elif [ -x "$f" ]; then
+            $f & disown
+        fi
     done
     unset f
 fi
