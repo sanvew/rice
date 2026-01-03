@@ -1,0 +1,51 @@
+#!/bin/sh
+
+set -e
+
+SYSTEM_APPLICATION_DIR=/usr/share/applications
+USER_APPLICATION_DIR="$XDG_DATA_HOME"/applications
+
+desktop-file-path() {
+    if [ -e "$SYSTEM_APPLICATION_DIR"/"$1" ]; then
+        echo "$SYSTEM_APPLICATION_DIR"/"$1"
+    elif [ -e "$USER_APPLICATION_DIR"/"$1" ]; then
+        echo "$USER_APPLICATION_DIR"/"$1"
+    fi
+}
+
+get-mime-types() {
+    grep '^MimeType=' $1 | cut -d= -f2 | tr ';' ' '
+}
+
+set-default-mimetypes() {
+    application=$1
+    shift
+    mimetype_list=$@
+
+    if [ -x "$(command -v xdg-mime)" ]; then 
+        xdg-mime default "$application" $@
+    else
+        echo "'xdg-mime' not found!"
+    fi
+}
+
+######## main ########
+desktop_file=$1
+if [ -z "$desktop_file" ]; then
+    echo "desktop file not provided!"
+    exit 1
+fi
+
+file_path=$(desktop-file-path "$desktop_file")
+if [ -z "$file_path" ]; then
+    echo "can't find '$1' in any applications locations!"
+    exit 1
+fi
+
+mimetype_list=$(get-mime-types $file_path)
+if [ ! -z "$mimetype_list" ]; then
+    set-default-mimetypes "$desktop_file" $mimetype_list
+else
+    echo "'$desktop_file' doesn't contains MimeType section!"
+    exit 1
+fi
