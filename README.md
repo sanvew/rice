@@ -1,6 +1,6 @@
 # rice
 
-Linux ricing files
+Linux configuration files. Mostly X11 and other gui configs.
 
 ## Themes
 Using [gruvbox-dark](https://github.com/morhetz/gruvbox) as a primary theme for the system
