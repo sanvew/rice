@@ -2,5 +2,6 @@
 
 killall -q xwallpaper
 
-WALLPAPER_PATH=~/Pictures/walls/P60502-093143.jpg
-[ -x "$(command -v xwallpaper)" ] && xwallpaper --daemon --zoom "$WALLPAPER_PATH"
+[ -x "$(command -v xwallpaper)" ] \
+    && [ ! -z "$WALLPAPER_FILE" ] \
+    && xwallpaper --daemon --zoom "$WALLPAPER_FILE"

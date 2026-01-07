@@ -5,10 +5,12 @@ set -e
 X11_CONFIG_DIR="$XDG_CONFIG_HOME"/X11
 if [ -d "$X11_CONFIG_DIR"/xinitrc.d/ ]; then
     for f in "$X11_CONFIG_DIR"/xinitrc.d/*.sh; do
+        # executable symlimk check
         if [ -L "$f" ] && [ -e "$f" ] && [ -x "$f" ]; then
-            $f & disown
+            $f &
+        # regular executable file check
         elif [ -x "$f" ]; then
-            $f & disown
+            $f &
         fi
     done
     unset f

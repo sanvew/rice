@@ -17,6 +17,12 @@
 @XF86AudioPlay
     playerctl play-pause
 
+@XF86MonBrightnessUp
+    brightnessctl set +10%
+
+@XF86MonBrightnessDown
+    brightnessctl set 10%-
+
 ########################################
 # Keybindings for application launch   #
 ########################################

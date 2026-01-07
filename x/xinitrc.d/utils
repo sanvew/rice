@@ -1,8 +1,0 @@
-#!/bin/sh
-
-create_file() {
-    if ! [ -f "$1" ]; then
-        mkdir -p $(dirname "$1") && touch $1
-    fi
-}
-

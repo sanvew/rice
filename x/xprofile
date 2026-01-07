@@ -3,6 +3,10 @@
 export TERMINAL=st
 export BROWSER=brave
 
+setxkbmap -layout "us,ru" -option "grp:ctrl_space_toggle"
+
+export WALLPAPER_FILE=~/Pictures/walls/P60502-093143.jpg
+
 # Java gui application fix for tiling wm
 # https://wiki.archlinux.org/title/Java#Gray_window,_applications_not_resizing_with_WM,_menus_immediately_closing
 export _JAVA_AWT_WM_NONREPARENTING=1
