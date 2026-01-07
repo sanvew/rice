@@ -5,7 +5,8 @@ set -e
 DOTBOT_DIR=".dotbot"
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "$0")" && pwd -P)"
-echo $BASEDIR
+# fully qualified
+DOTBOT_FQ_BIN="${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}"
 
 cd "${BASEDIR}"
 
@@ -21,7 +22,10 @@ MODULE_CONFIGS="
     gtk3/gtk3.conf.yaml
 "
 
-for config_path in $MODULE_CONFIGS; do
-    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "$config_path" "${@}"
-done
+MODULE_ROOT_CONFIGS="
+    x/x.root.conf.yaml
+"
+
+sh ./.install-modules "$DOTBOT_FQ_BIN" "$BASEDIR" "$MODULE_CONFIGS"
+sudo sh ./.install-modules "$DOTBOT_FQ_BIN" "$BASEDIR" "$MODULE_ROOT_CONFIGS"
 
