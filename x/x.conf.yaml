@@ -2,13 +2,13 @@
     link:
       create: true
       relink: true
+      backup: true
 
 - link:
     ~/.xinitrc: './x/xinitrc'
     ~/.xprofile: './x/xprofile'
     ~/.Xresources: './x/Xresources'
     ~/.config/X11/xinitrc.d:
-      create: true
       glob: true
       path: './x/xinitrc.d/**'
     ~/.config/mimeapps.list: './x/mimeapps.list'

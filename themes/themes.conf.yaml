@@ -2,13 +2,10 @@
     link:
       create: true
       relink: true
-
-- create:
-    - ~/.themes
+      backup: true
 
 - link:
     ~/.themes:
-      create: true
       glob: true
       path: './themes/**'
       exclude: [ '**/themes.conf.yaml' ]

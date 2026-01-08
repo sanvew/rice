@@ -1,6 +1,8 @@
 # rice
 
-Linux configuration files. Mostly X11 and other gui configs.
+Linux configuration files. Mostly X11 and other graphical related configs. "dotfiles" with terminalish configs located [here](https://github.com/sanvew/dotfiles)
+
+files managed with [dotbot](https://github.com/anishathalye/dotbot)
 
 ## Themes
 Using [gruvbox-dark](https://github.com/morhetz/gruvbox) as a primary theme for the system

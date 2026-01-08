@@ -2,6 +2,7 @@
     link:
       create: true
       relink: true
+      backup: true
 
 - link:
     '~/.config/fontconfig/fonts.conf': './fontconfig/fonts.conf'

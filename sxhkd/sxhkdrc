@@ -18,7 +18,7 @@
     playerctl play-pause
 
 @XF86MonBrightnessUp
-    brightnessctl set +10%
+    brightnessctl set 10%+
 
 @XF86MonBrightnessDown
     brightnessctl set 10%-
@@ -35,9 +35,13 @@ ctrl + alt + b
 ctrl + alt + n
     $TERMINAL nmtui
 
+ctrl + alt + f
+    $TERMINAL lf
+
 ########################################
 # System keybindings                   #
 ########################################
 # screenlock
 ctrl + super + @l
     slock
+
