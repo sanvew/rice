@@ -3,19 +3,19 @@
 PROMPT="power"
 SCREENLOCK_SCRIPT="screenlock"
 
-reboot() {
+reboot_() {
   loginctl reboot
 }
 
-poweroff() {
+poweroff_() {
   loginctl poweroff
 }
 
-hibernate() {
+hibernate_() {
   [ -x "$(command -v $SCREENLOCK_SCRIPT)" ] && $SCREENLOCK_SCRIPT -i
 }
 
-screenlock() {
+screenlock_() {
   [ -x "$(command -v $SCREENLOCK_SCRIPT)" ] && $SCREENLOCK_SCRIPT
 }
 
@@ -30,9 +30,9 @@ show-menu() {
 selection=$(show-menu | dmenu -i -p "$PROMPT")
 
 case $selection in
-  "reboot") reboot ;;
-  "poweroff") poweroff ;;
-  "hibernate") hibernate ;;
-  "screenlock") screenlock ;;
+  "reboot") reboot_ ;;
+  "poweroff") poweroff_ ;;
+  "hibernate") hibernate_ ;;
+  "screenlock") screenlock_ ;;
   *) exit 0 ;;
 esac

@@ -2,6 +2,7 @@
 
 HIBERNATE_TIMEOUT=20
 HIBERNATE_CMD="loginctl hibernate"
+SCREENLOCK_CMD=slock
 XIDLEHOOK_PID=
 
 start_idlehook() {
@@ -15,15 +16,15 @@ stop_idlehook() {
     kill "$XIDLEHOOK_PID" 2>/dev/null
 }
 
-if [ -x "$(command -v $SCREENLOCK)" ]; then
-    while [ $# -gt 0 ]; do
-        case $1 in
-            -i|--immediate) HIBERNATE_TIMEOUT=0 ;;
-        esac
-        shift
-    done
+while [ $# -gt 0 ]; do
+    case $1 in
+        -i|--immediate) HIBERNATE_TIMEOUT=0 ;;
+    esac
+    shift
+done
 
+if [ -x "$(command -v $SCREENLOCK_CMD)" ]; then
     start_idlehook
-    $SCREENLOCK
+    $SCREENLOCK_CMD
     stop_idlehook
 fi

@@ -42,14 +42,10 @@ ctrl + alt + f
 # System keybindings                   #
 ########################################
 # screenlock
-ctrl + super + @l
+ctrl + alt + @l
     screenlock
 
 # reload sxhkd config file
 ctrl + shift + r
     reload-sxhkd
-
-# reload (merge) Xresources
-ctrl + shift + x
-    reload-xresources
 
