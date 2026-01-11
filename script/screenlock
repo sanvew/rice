@@ -1,0 +1,29 @@
+#!/bin/sh
+
+HIBERNATE_TIMEOUT=20
+HIBERNATE_CMD="loginctl hibernate"
+XIDLEHOOK_PID=
+
+start_idlehook() {
+    [ -x "$(command -v xidlehook)" ] || return 0
+    xidlehook --once --timer "$(echo "$HIBERNATE_TIMEOUT*60" | bc)" "$HIBERNATE_CMD" "" &
+    XIDLEHOOK_PID=$!
+}
+
+stop_idlehook() {
+    [ -n "$XIDLEHOOK_PID" ] || return 0
+    kill "$XIDLEHOOK_PID" 2>/dev/null
+}
+
+if [ -x "$(command -v $SCREENLOCK)" ]; then
+    while [ $# -gt 0 ]; do
+        case $1 in
+            -i|--immediate) HIBERNATE_TIMEOUT=0 ;;
+        esac
+        shift
+    done
+
+    start_idlehook
+    $SCREENLOCK
+    stop_idlehook
+fi

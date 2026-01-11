@@ -27,5 +27,5 @@ MODULE_ROOT_CONFIGS="
 "
 
 sh ./.install-modules "$DOTBOT_FQ_BIN" "$BASEDIR" "$MODULE_CONFIGS"
-# sudo sh ./.install-modules "$DOTBOT_FQ_BIN" "$BASEDIR" "$MODULE_ROOT_CONFIGS"
+sudo sh ./.install-modules "$DOTBOT_FQ_BIN" "$BASEDIR" "$MODULE_ROOT_CONFIGS"
 

@@ -7,8 +7,8 @@
 - link:
     ~/.local/bin:
       glob: true
-      path: './script/**'
-      exclude: [ '**/script.conf.yaml', '**/status-bar/**', '**/reload/**' ]
+      path: './script/*'
+      exclude: [ './script/script.conf.yaml', './script/status-bar', './script/reload', './script/dmenu' ]
     ~/.local/bin/statusbar:
       glob: true
       prefix: "sb-"
@@ -17,3 +17,7 @@
       glob: true
       prefix: "reload-"
       path: './script/reload/*'
+    ~/.local/bin:
+      glob: true
+      prefix: "dmenu-"
+      path: './script/dmenu/*'

@@ -43,7 +43,7 @@ ctrl + alt + f
 ########################################
 # screenlock
 ctrl + super + @l
-    slock
+    screenlock
 
 # reload sxhkd config file
 ctrl + shift + r

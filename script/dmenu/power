@@ -1,0 +1,38 @@
+#!/bin/sh
+
+PROMPT="power"
+SCREENLOCK_SCRIPT="screenlock"
+
+reboot() {
+  loginctl reboot
+}
+
+poweroff() {
+  loginctl poweroff
+}
+
+hibernate() {
+  [ -x "$(command -v $SCREENLOCK_SCRIPT)" ] && $SCREENLOCK_SCRIPT -i
+}
+
+screenlock() {
+  [ -x "$(command -v $SCREENLOCK_SCRIPT)" ] && $SCREENLOCK_SCRIPT
+}
+
+show-menu() {
+  printf '%s\n' \
+    "hibernate" \
+    "screenlock" \
+    "reboot" \
+    "poweroff"
+}
+
+selection=$(show-menu | dmenu -i -p "$PROMPT")
+
+case $selection in
+  "reboot") reboot ;;
+  "poweroff") poweroff ;;
+  "hibernate") hibernate ;;
+  "screenlock") screenlock ;;
+  *) exit 0 ;;
+esac
