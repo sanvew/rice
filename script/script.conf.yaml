@@ -8,7 +8,12 @@
     ~/.local/bin:
       glob: true
       path: './script/**'
-      exclude: [ '**/script.conf.yaml', '**/status-bar/**' ]
+      exclude: [ '**/script.conf.yaml', '**/status-bar/**', '**/reload/**' ]
     ~/.local/bin/statusbar:
       glob: true
+      prefix: "sb-"
       path: './script/statusbar/*'
+    ~/.local/bin:
+      glob: true
+      prefix: "reload-"
+      path: './script/reload/*'

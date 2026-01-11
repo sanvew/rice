@@ -1,0 +1,5 @@
+#!/bin/sh
+
+DWM_SRC_DIR=~/.local/src/dwm
+
+make -C $DWM_SRC_DIR clean install && kill -HUP $(pidof dwm)

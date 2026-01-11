@@ -5,12 +5,11 @@ set -e
 install-modules() {
     dotbot_bin=$1
     base_dir=$2
-    modules=$3
-    shift 3
+    shift 2
+    modules=$@
     for config_path in $modules; do
-        $dotbot_bin -d $base_dir -c $config_path -v "$@"
+        $dotbot_bin -d $base_dir -c $config_path -v
     done
 }
 
-shift 3
-install-modules "$1" "$2" "$3" "$@"
+install-modules $@

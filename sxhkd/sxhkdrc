@@ -45,3 +45,11 @@ ctrl + alt + f
 ctrl + super + @l
     slock
 
+# reload sxhkd config file
+ctrl + shift + r
+    reload-sxhkd
+
+# reload (merge) Xresources
+ctrl + shift + x
+    reload-xresources
+

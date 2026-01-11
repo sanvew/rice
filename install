@@ -10,7 +10,7 @@ DOTBOT_FQ_BIN="${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}"
 
 cd "${BASEDIR}"
 
-git submodule update --init --recursive
+git submodule update --init --recursive --depth 1
 
 MODULE_CONFIGS="
     x/x.conf.yaml
@@ -27,5 +27,5 @@ MODULE_ROOT_CONFIGS="
 "
 
 sh ./.install-modules "$DOTBOT_FQ_BIN" "$BASEDIR" "$MODULE_CONFIGS"
-sudo sh ./.install-modules "$DOTBOT_FQ_BIN" "$BASEDIR" "$MODULE_ROOT_CONFIGS"
+# sudo sh ./.install-modules "$DOTBOT_FQ_BIN" "$BASEDIR" "$MODULE_ROOT_CONFIGS"
 
