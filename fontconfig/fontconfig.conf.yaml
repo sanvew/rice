@@ -3,8 +3,6 @@
       create: true
       relink: true
       backup: true
-
 - link:
-    '~/.config/fontconfig/fonts.conf': './fontconfig/fonts.conf'
-
+    '~/.config/fontconfig/fonts.conf': './fonts.conf'
 

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+CURRENT_PWD=$(pwd)
+RICE_SRC_DIR=~/.local/src/rice
+
+cd $RICE_SRC_DIR \
+  && git pull --rebase \
+  && ./install
+cd $CURRENT_PWD

@@ -1,11 +1,8 @@
-- defaults:
-    link:
-      create: true
-      relink: true
-      backup: true
-
 - link:
     ~/.themes:
       glob: true
-      path: './themes/**'
+      create: true
+      relink: true
+      backup: true
+      path: './**'
       exclude: [ '**/themes.conf.yaml' ]

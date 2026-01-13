@@ -1,11 +1,8 @@
-- defaults:
-    link:
-      create: true
-      relink: true
-      backup: true
-
 - link:
     /usr/share/X11/xorg.conf.d/:
       glob: true
-      path: './x/xorg.conf.d/**'
+      create: true
+      relink: true
+      backup: true
+      path: './xorg.conf.d/**'
 

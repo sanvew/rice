@@ -24,7 +24,7 @@
     brightnessctl set 10%-
 
 ########################################
-# Keybindings for application launch   #
+# Keybindings for launch applications  #
 ########################################
 ctrl + alt + t
     $TERMINAL
@@ -38,11 +38,17 @@ ctrl + alt + n
 ctrl + alt + f
     $TERMINAL lf
 
+ctrl + alt + l
+    logseq
+
+ctrl + alt + i
+    idea
+
 ########################################
 # System keybindings                   #
 ########################################
 # screenlock
-ctrl + alt + @l
+ctrl + alt + @q
     screenlock
 
 # reload sxhkd config file

@@ -1,0 +1,11 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+      backup: true
+- link:
+    '~/.config/mpv/mpv.conf': './mpv.conf'
+    ~/.config/mpv/scripts:
+      glob: true
+      path: './scripts/*'
+

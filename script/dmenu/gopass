@@ -1,0 +1,13 @@
+#!/bin/sh
+
+PROMPT="󰌾 gopass:"
+
+reload-gpg-agent() {
+    killall -q gpg-agent
+}
+
+# relies on https://github.com/sanvew/dotfiles/blob/main/gnupg/arch/pinentry
+entry="$(gopass ls --flat | dmenu -i -p "$PROMPT" -l 0)"
+reload-gpg-agent
+[ -n "$entry" ] && PINENTRY_CMD=gtk gopass show -c "$entry"
+reload-gpg-agent

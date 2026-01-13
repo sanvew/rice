@@ -2,30 +2,46 @@
 
 set -e
 
+CONFIG="install.conf.yaml"
+BASEDIR="$(cd "$(dirname "$0")" && pwd -P)"
 DOTBOT_DIR=".dotbot"
 DOTBOT_BIN="bin/dotbot"
-BASEDIR="$(cd "$(dirname "$0")" && pwd -P)"
-# fully qualified
-DOTBOT_FQ_BIN="${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}"
+MODULE_CONFIG="
+  x
+  picom
+  fontconfig
+  sxhkd
+  script
+  themes
+  gtk3
+  mpv
+"
+
+is_root_config() {
+  for arg in "$@"; do
+    if [ "$arg" = "--root" ]; then
+      printf 1; return 0
+    fi
+  done
+}
+
+install_modules() {
+  dotbot_bin=$1; base_dir=$2; modules=$3; shift 3
+  is_root=$(is_root_config "$@")
+  for cfg in $modules; do
+    config_dir="$base_dir/$cfg"
+    config="$config_dir/$cfg".conf.yaml
+    if [ -f "$config" ]; then
+      $dotbot_bin -d $config_dir -c $config
+    fi
+    [ "$is_root" = "1" ] && root_config="$config_dir/$cfg".root.conf.yaml
+    if [ -f "$root_config" ]; then
+      $dotbot_bin -d $config_dir -c $root_config
+    fi
+  done
+}
+
 
 cd "${BASEDIR}"
-
-git submodule update --init --recursive --depth 1
-
-MODULE_CONFIGS="
-    x/x.conf.yaml
-    picom/picom.conf.yaml
-    fontconfig/fontconfig.conf.yaml
-    sxhkd/sxhkd.conf.yaml
-    script/script.conf.yaml
-    themes/themes.conf.yaml
-    gtk3/gtk3.conf.yaml
-"
-
-MODULE_ROOT_CONFIGS="
-    x/x.root.conf.yaml
-"
-
-sh ./.install-modules "$DOTBOT_FQ_BIN" "$BASEDIR" "$MODULE_CONFIGS"
-sudo sh ./.install-modules "$DOTBOT_FQ_BIN" "$BASEDIR" "$MODULE_ROOT_CONFIGS"
-
+git submodule update --init --recursive
+install_modules "$BASEDIR/$DOTBOT_DIR/$DOTBOT_BIN" "$BASEDIR" "$MODULE_CONFIG" "$@"

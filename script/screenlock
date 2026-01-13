@@ -1,14 +1,17 @@
 #!/bin/sh
 
-HIBERNATE_TIMEOUT=20
+HIBERNATE_TIMEOUT="$(echo "20*60" | bc)"
+IMMEDIATE_TIMEOUT=2
 HIBERNATE_CMD="loginctl hibernate"
 SCREENLOCK_CMD=slock
+IMMEDIATE_MODE=0
 XIDLEHOOK_PID=
 
 start_idlehook() {
     [ -x "$(command -v xidlehook)" ] || return 0
-    xidlehook --once --timer "$(echo "$HIBERNATE_TIMEOUT*60" | bc)" "$HIBERNATE_CMD" "" &
+    xidlehook --detect-sleep --timer "$HIBERNATE_TIMEOUT" "$HIBERNATE_CMD" "" &
     XIDLEHOOK_PID=$!
+    [ "$IMMEDIATE_MODE" -eq 1 ] && (sleep "$IMMEDIATE_TIMEOUT" && $HIBERNATE_CMD) &
 }
 
 stop_idlehook() {
@@ -18,7 +21,7 @@ stop_idlehook() {
 
 while [ $# -gt 0 ]; do
     case $1 in
-        -i|--immediate) HIBERNATE_TIMEOUT=0 ;;
+        -i|--immediate) IMMEDIATE_MODE=1 ;; # give some time to actually lock
     esac
     shift
 done

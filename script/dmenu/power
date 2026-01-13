@@ -1,38 +1,43 @@
 #!/bin/sh
 
-PROMPT="power"
+PROMPT="⚡ Power:"
 SCREENLOCK_SCRIPT="screenlock"
 
-reboot_() {
+LABEL_REBOOT="🔄 Reboot"
+LABEL_POWEROFF="⏻ Power Off"
+LABEL_HIBERNATE="🛌 Hibernate"
+LABEL_LOCK="🔒 Lock"
+
+_reboot() {
   loginctl reboot
 }
 
-poweroff_() {
+_poweroff() {
   loginctl poweroff
 }
 
-hibernate_() {
+_hibernate() {
   [ -x "$(command -v $SCREENLOCK_SCRIPT)" ] && $SCREENLOCK_SCRIPT -i
 }
 
-screenlock_() {
+_screenlock() {
   [ -x "$(command -v $SCREENLOCK_SCRIPT)" ] && $SCREENLOCK_SCRIPT
 }
 
 show-menu() {
   printf '%s\n' \
-    "hibernate" \
-    "screenlock" \
-    "reboot" \
-    "poweroff"
+    "$LABEL_HIBERNATE" \
+    "$LABEL_LOCK" \
+    "$LABEL_REBOOT" \
+    "$LABEL_POWEROFF"
 }
 
 selection=$(show-menu | dmenu -i -p "$PROMPT")
 
 case $selection in
-  "reboot") reboot_ ;;
-  "poweroff") poweroff_ ;;
-  "hibernate") hibernate_ ;;
-  "screenlock") screenlock_ ;;
+  "$LABEL_REBOOT" | "reboot") _reboot ;;
+  "$LABEL_POWEROFF" | "poweroff") _poweroff ;;
+  "$LABEL_HIBERNATE" | "hibernate") _hibernate ;;
+  "$LABEL_LOCK" | "screenlock") _screenlock ;;
   *) exit 0 ;;
 esac

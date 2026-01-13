@@ -147,3 +147,4 @@ application/x-cue=mpv.desktop
 audio/m3u=mpv.desktop
 audio/vnd.wave=mpv.desktop
 video/vnd.avi=mpv.desktop
+x-scheme-handler/bruno=bruno.desktop

@@ -3,25 +3,25 @@
       create: true
       relink: true
       backup: true
-
 # keep every config in separate section so nothing get overwritten
 - link:
     ~/.local/bin:
       glob: true
-      path: './script/*'
-      exclude: [ './script/script.conf.yaml', './script/statusbar', './script/reload', './script/dmenu' ]
+      path: './*'
+      exclude: [ './script.conf.yaml', './statusbar', './reload', './dmenu' ]
 - link:
     ~/.local/bin/statusbar:
       glob: true
       prefix: "sb-"
-      path: './script/statusbar/*'
+      path: './statusbar/*'
 - link:
     ~/.local/bin:
       glob: true
       prefix: "reload-"
-      path: './script/reload/*'
+      path: './reload/*'
 - link:
     ~/.local/bin:
       glob: true
       prefix: "dmenu-"
-      path: './script/dmenu/*'
+      path: './dmenu/*'
+
