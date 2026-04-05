@@ -32,11 +32,11 @@ install_modules() {
     config_dir="$base_dir/$cfg"
     config="$config_dir/$cfg".conf.yaml
     if [ -f "$config" ]; then
-      $dotbot_bin -d $config_dir -c $config
+      $dotbot_bin -d $config_dir -c $config || true
     fi
     [ "$is_root" = "1" ] && root_config="$config_dir/$cfg".root.conf.yaml
     if [ -f "$root_config" ]; then
-      $dotbot_bin -d $config_dir -c $root_config
+      $dotbot_bin -d $config_dir -c $root_config || true
     fi
   done
 }

@@ -36,7 +36,11 @@ Using [gruvbox-dark](https://github.com/morhetz/gruvbox) as a primary theme for 
 ## TODO
 - [ ] add mpd deamon and client setup
 - [ ] statusbar:
-    - [ ] add battery indicator
-    - [ ] add network indicator
-    - [ ] add cpu and ram indicator
+  - [ ] add battery indicator
+  - [ ] add network indicator
+  - [ ] add cpu and ram indicator
 - [ ] add notification daemon [dunst](https://github.com/dunst-project/dunst)
+- [ ] enhance monar script (monitor arrange)
+  - [ ] rework cli args to --top, --bottom etc.
+  - [ ] add cli arg to disable secondary monitor
+  - [ ] add dmenu script

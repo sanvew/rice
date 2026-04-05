@@ -2,6 +2,8 @@
 # text files
 text/plain=nvim.desktop
 application/x-shellscript=nvim.desktop
+application/javascript=nvim.desktop
+application/json=nvim.desktop
 # documents
 application/pdf=org.pwmt.zathura.desktop
 # images
