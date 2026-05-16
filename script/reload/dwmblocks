@@ -2,4 +2,4 @@
 
 DWMBLOCKS_SRC_DIR=~/.local/src/dwmblocks-async
 
-make -C $DWM_SRC_DIR clean install && kill -HUP $(pidof dwmblocks)
+make -C "$DWMBLOCKS_SRC_DIR" clean install && kill -HUP $(pidof dwmblocks)

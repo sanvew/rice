@@ -1,0 +1,50 @@
+#!/bin/sh
+
+. sb-display
+
+for bat in /sys/class/power_supply/BAT?*; do
+  capacity="$(cat "$bat"/capacity 2>&1)"
+  if [ "$capacity" -gt 95 ]; then
+    status="󰁹"
+  elif [ "$capacity" -gt 90 ]; then
+    status="󰂂"
+  elif [ "$capacity" -gt 80 ]; then
+    status="󰂁"
+  elif [ "$capacity" -gt 70 ]; then
+    status="󰂀"
+  elif [ "$capacity" -gt 60 ]; then
+    status="󰁿"
+  elif [ "$capacity" -gt 50 ]; then
+    status="󰁾"
+  elif [ "$capacity" -gt 40 ]; then
+    status="󰁽"
+  elif [ "$capacity" -gt 30 ]; then
+    status="󰁼"
+  elif [ "$capacity" -gt 20 ]; then
+    status="󰁻"
+  elif [ "$capacity" -gt 10 ]; then
+    status="󰁺"
+  else
+    status="󰂃"
+  fi
+
+  bat_status="$(cat "$bat"/status 2>&1)"
+  case "$bat_status" in
+    Full) status="$COL_4󱐋$COL_RESET" ;;
+    Discharging)
+      if [ "$capacity" -gt 70 ]; then
+        status="$COL_2$status$COL_RESET"
+      elif [ "$capacity" -gt 20 ]; then
+        status="$COL_3$status$COL_RESET"
+      else
+        status="$COL_1$status$COL_RESET"
+      fi
+      ;;
+    Charging) status="$COL_2$status$COL_RESET" ;;
+    "Not charging") status="" ;;
+    Unknown|*) status="?$status" ;;
+  esac
+
+  printf "$status"
+done
+

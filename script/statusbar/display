@@ -1,0 +1,19 @@
+#!/bin/sh
+
+export COL_0=^c#000000^   # black
+export COL_1=^c#FF0000^   # red
+export COL_2=^c#33FF00^   # green
+export COL_3=^c#FF0099^   # yellow
+export COL_4=^c#0066FF^   # blue
+export COL_5=^c#CC00FF^   # magenta
+export COL_6=^c#00FFFF^   # cyan
+export COL_7=^c#D0D0D0^   # white
+export COL_8=^c#808080^   # black
+export COL_9=^c#FF0000^   # red
+export COL_10=^c#33FF00^  # green
+export COL_11=^c#FF0099^  # yellow
+export COL_12=^c#0066FF^  # blue
+export COL_13=^c#CC00FF^  # magenta
+export COL_14=^c#00FFFF^  # cyan
+export COL_15=^c#FFFFFF^  # white
+export COL_RESET=^d^

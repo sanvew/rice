@@ -44,6 +44,9 @@ ctrl + alt + l
 ctrl + alt + i
     idea
 
+ctrl + alt + c
+    $TERMINAL bc
+
 ########################################
 # System keybindings                   #
 ########################################
