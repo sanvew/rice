@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -eu
+
+. sb-display-utils
+
+is-muted() {
+  wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>&1 | grep -q "MUTED"
+}
+
+get-volume() {
+  frac=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>&1 | tail -n 1 | cut -d' ' -f2)
+  echo "$frac * 100 / 1" | bc
+}
+
+if is-muted; then
+  status="$COL_1 $COL_RESET"
+else
+  volume=$(get-volume)
+  if [ "$volume" -gt 70 ]; then
+    status=" $volume"
+  elif [ "$volume" -gt 30 ]; then
+    status=" $volume"
+  else
+    status="$volume"
+  fi
+fi
+
+printf "$status"
+

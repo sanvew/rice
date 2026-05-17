@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. sb-display
+. sb-display-utils
 
 for bat in /sys/class/power_supply/BAT?*; do
   capacity="$(cat "$bat"/capacity 2>&1)"
@@ -27,6 +27,7 @@ for bat in /sys/class/power_supply/BAT?*; do
   else
     status="󰂃"
   fi
+  status="$status $capacity%"
 
   bat_status="$(cat "$bat"/status 2>&1)"
   case "$bat_status" in
@@ -41,10 +42,10 @@ for bat in /sys/class/power_supply/BAT?*; do
       fi
       ;;
     Charging) status="$COL_2$status$COL_RESET" ;;
-    "Not charging") status="" ;;
+    "Not charging") status="$COL_5 $COL_RESET" ;;
     Unknown|*) status="?$status" ;;
   esac
 
-  printf "$status"
+  printf "%s" "$status"
 done
 

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -eu
+
+signal-dwmblocks() {
+  signal=$1
+  kill -RTMIN+"$signal" $(pidof dwmblocks)
+}
+
+DWMBLOCKS_KB_SIGNAL=3
+
+[ -x "$(command -v xkblayout-state)" ] || exit 1
+xkblayout-state set +1
+signal-dwmblocks $DWMBLOCKS_KB_SIGNAL
+
