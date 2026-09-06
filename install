@@ -15,6 +15,7 @@ MODULE_CONFIG="
   themes
   gtk3
   mpv
+  mpd
 "
 
 is_root_config() {

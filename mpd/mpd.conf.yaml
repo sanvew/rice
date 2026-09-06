@@ -1,0 +1,8 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+      backup: true
+- link:
+    '~/.config/mpd/mpd.conf': './mpd.conf'
+

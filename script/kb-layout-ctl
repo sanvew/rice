@@ -2,14 +2,27 @@
 
 set -eu
 
-signal-dwmblocks() {
-  signal=$1
-  kill -RTMIN+"$signal" $(pidof dwmblocks)
-}
-
 DWMBLOCKS_KB_SIGNAL=3
 
-[ -x "$(command -v xkblayout-state)" ] || exit 1
-xkblayout-state set +1
-signal-dwmblocks $DWMBLOCKS_KB_SIGNAL
+signal_dwmblocks() {
+  signal=$1; shift
+  kill -RTMIN+"$signal" "$(pidof dwmblocks)"
+}
 
+get_layout_idx() {
+  target=$1; shift
+  xkblayout-state print "%S" | awk "/^${target}$/ { print NR - 1; exit }"
+}
+
+[ -x "$(command -v xkblayout-state)" ] || exit 1
+
+if [ "$#" -gt 0 ]; then
+  layout_idx=$(get_layout_idx "$1")
+  if [ -n "$layout_idx" ]; then
+    xkblayout-state set "$layout_idx"
+  fi
+else
+  xkblayout-state set +1
+fi
+
+signal_dwmblocks "$DWMBLOCKS_KB_SIGNAL"

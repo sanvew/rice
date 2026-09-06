@@ -47,6 +47,9 @@ ctrl + alt + i
 ctrl + alt + c
     $TERMINAL bc
 
+ctrl + alt + m
+    $TERMINAL rmpc
+
 ########################################
 # System keybindings                   #
 ########################################

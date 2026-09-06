@@ -2,6 +2,7 @@
 
 HIBERNATE_TIMEOUT="$(echo "20*60" | bc)"
 IMMEDIATE_TIMEOUT=2
+KB_LAYOUT_CTL_CMD="$HOME/.local/bin/kb-layout-ctl"
 HIBERNATE_CMD="loginctl hibernate"
 SCREENLOCK_CMD=slock
 IMMEDIATE_MODE=0
@@ -19,6 +20,17 @@ stop_idlehook() {
     kill "$XIDLEHOOK_PID" 2>/dev/null
 }
 
+store_kb_layout() {
+  [ -x "$(command -v xkblayout-state)" ] || return 1
+  xkblayout-state print "%s"
+  $KB_LAYOUT_CTL_CMD us 2>/dev/null
+}
+
+restore_kb_layout() {
+  layout=$1; shift
+  [ -n "$layout" ] && $KB_LAYOUT_CTL_CMD "$layout"
+}
+
 while [ $# -gt 0 ]; do
     case $1 in
         -i|--immediate) IMMEDIATE_MODE=1 ;; # give some time to actually lock
@@ -27,7 +39,9 @@ while [ $# -gt 0 ]; do
 done
 
 if [ -x "$(command -v $SCREENLOCK_CMD)" ]; then
-    start_idlehook
-    $SCREENLOCK_CMD
-    stop_idlehook
+  start_idlehook
+  prev_layout="$(store_kb_layout)"
+  $SCREENLOCK_CMD
+  restore_kb_layout "$prev_layout"
+  stop_idlehook
 fi

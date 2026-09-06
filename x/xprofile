@@ -4,8 +4,6 @@ export TERMINAL=st
 export BROWSER=brave
 export WALLPAPER_FILE=~/Pictures/walls/NY432ParkAve.jpg
 
-setxkbmap -layout "us,ru"
-
 # Java gui application fix for tiling wm
 # https://wiki.archlinux.org/title/Java#Gray_window,_applications_not_resizing_with_WM,_menus_immediately_closing
 export _JAVA_AWT_WM_NONREPARENTING=1
