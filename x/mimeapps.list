@@ -1,5 +1,5 @@
 [Default Applications]
-# text files
+# text
 text/plain=nvim.desktop
 application/x-shellscript=nvim.desktop
 application/javascript=nvim.desktop
@@ -27,6 +27,7 @@ image/jp2=nsxiv.desktop
 image/jxl=nsxiv.desktop
 image/avif=nsxiv.desktop
 image/heif=nsxiv.desktop
+# audio
 application/ogg=mpv.desktop
 application/x-ogg=mpv.desktop
 application/mxf=mpv.desktop
@@ -149,4 +150,4 @@ application/x-cue=mpv.desktop
 audio/m3u=mpv.desktop
 audio/vnd.wave=mpv.desktop
 video/vnd.avi=mpv.desktop
-x-scheme-handler/bruno=bruno.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
