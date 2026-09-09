@@ -1,0 +1,10 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+      backup: true
+- link:
+    /etc/elogind/sleep.conf.d/:
+      glob: true
+      path: './sleep.conf.d/**'
+

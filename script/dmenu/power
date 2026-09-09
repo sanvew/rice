@@ -35,7 +35,7 @@ show-menu() {
     "$LABEL_POWEROFF" \
     "$LABEL_SUSPEND" \
     "$LABEL_HIBERNATE" \
-    "$LABEL_LOCK" 
+    "$LABEL_LOCK"
 }
 
 selection=$(show-menu | dmenu -i -p "$PROMPT")

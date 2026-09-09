@@ -1,0 +1,2 @@
+#!/bin/sh
+# TODO: create battery management menu: 1) full charge, 2) set desktop mode (threshold 45/50), 3) set balanced mode (threshold 75/80)

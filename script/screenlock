@@ -4,7 +4,7 @@ HIBERNATE_TIMEOUT="$(echo "20*60" | bc)"
 IMMEDIATE_TIMEOUT=2
 KB_LAYOUT_CTL_CMD="$HOME/.local/bin/kb-layout-ctl"
 HIBERNATE_CMD="loginctl hibernate"
-SUSPEND_CMD="loginctl hybrid-sleep"
+SUSPEND_CMD="loginctl suspend-then-hibernate"
 SCREENLOCK_CMD=slock
 IMMEDIATE_MODE=0
 SUSPEND_MODE=0
@@ -37,7 +37,6 @@ restore_kb_layout() {
 while [ $# -gt 0 ]; do
     case $1 in
         -i|--immediate) IMMEDIATE_MODE=1 ;;
-        # TODO: 20260907-193731 cant figure out how to turn off fan immediately on suspend
         -s|--suspend) SUSPEND_MODE=1 ;;
     esac
     shift
