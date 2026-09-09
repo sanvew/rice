@@ -9,9 +9,13 @@
 @XF86AudioLowerVolume
     volume-ctl down
 
-# Mute volume
+# Mute output
 @XF86AudioMute
     volume-ctl mute
+
+# Mute mic
+@XF86AudioMicMute
+    volume-ctl mic-mute
 
 # Play/pause
 @XF86AudioPlay
@@ -41,13 +45,13 @@ ctrl + alt + f
 ctrl + alt + l
     logseq
 
-ctrl + alt + i
-    idea
-
 ctrl + alt + c
     $TERMINAL bc
 
 ctrl + alt + m
+    $TERMINAL ncpamixer
+
+ctrl + alt + p
     $TERMINAL rmpc
 
 ########################################
@@ -59,7 +63,7 @@ ctrl + space
 
 # screenlock
 ctrl + alt + @q
-    screenlock
+    screenlock -s
 
 # reload sxhkd config file
 ctrl + shift + r

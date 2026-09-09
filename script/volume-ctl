@@ -33,6 +33,7 @@ case "$cmd" in
     wpctl set-volume @DEFAULT_AUDIO_SINK@ "$VOL_STEP"-
     ;;
   mute) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
+  mic-mute) wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle ;;
   *) exit 2 ;;
 esac
 
