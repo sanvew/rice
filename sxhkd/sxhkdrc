@@ -55,6 +55,21 @@ ctrl + alt + p
     $TERMINAL rmpc
 
 ########################################
+# Screencapture                        #
+########################################
+alt + shift + 3
+    screencapture -e
+
+alt + shift + 4
+    screencapture -ei
+
+alt + shift + ctrl + 3
+    screencapture -ec
+
+alt + shift + ctrl + 4
+    screencapture -rc
+
+########################################
 # System keybindings                   #
 ########################################
 # keyboard layout switch

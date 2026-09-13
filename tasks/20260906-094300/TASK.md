@@ -1,28 +1,18 @@
-# add screenshot script using golang
+# add screencapture script
 
-- STATUS: OPEN
+- STATUS: CLOSED
 - PRIORITY: 100
 - TAGS: utils
 
-Use [scrot](https://github.com/resurrecting-open-source-projects/scrot), xclip and golang.
+Use **ffmpeg** for screen capture, [slop](https://github.com/naelstrof/slop) for region selection, and **xclip**.
 
 Options list:
 ```
--e, --entire-screen    capture the entire screen (default)
--r, --region           interactively select a portion of the screen
--c, --clipboard        copy the result to the clipboard
+-e    capture the entire screen (default)
+-r    interactively select a portion of the screen
+-c    copy the result to the clipboard
 ```
 
-DONT forget to exclude `./*.go` from `link: ~/.local/bin`.
-
-script/script.conf.yaml snippet:
-```yaml
-- shell:
-    - >
-      OUT_DIR="$(pwd)/.build"; mkdir -p $OUT_DIR
-      && go build -o $OUT_DIR/screencapture screencapture.go
-      && cp $OUT_DIR/screencapture ~/.local/bin/screencapture
-```
 macos-like screenshot keybindings sxhkd/sxhkdrc.bak snippet:
 ```
 ########################################
@@ -40,3 +30,4 @@ alt + shift + ctrl + 3
 alt + shift + ctrl + 4
     screencapture -rc
 ```
+

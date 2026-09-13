@@ -1,0 +1,42 @@
+#!/bin/sh
+
+SCREENCAPTURE_SCRIPT="screencapture"
+PROMPT="📸 Screencapture:"
+
+LABEL_ENTIRE_SCREEN="󰍺 Entire Screen"
+LABEL_SELECT_REGION=" Select region"
+LABEL_WINDOW_ACTIVE="🗔 Active window"
+LABEL_WINDOW_SELECT="🗔 Select window"
+LABEL_ENTIRE_SCREEN_CLIPBOARD="󰍺 Entire Screen + clipboard"
+LABEL_SELECT_REGION_CLIPBOARD="+  Select region + clipboard"
+LABEL_WINDOW_ACTIVE_CLIPBOARD="🗔 + Active window + clipboard"
+LABEL_WINDOW_SELECT_CLIPBOARD="🗔 + Select window + clipboard"
+
+show-menu() {
+  printf '%s\n' \
+    "$LABEL_ENTIRE_SCREEN" \
+    "$LABEL_SELECT_REGION" \
+    "$LABEL_WINDOW_ACTIVE" \
+    "$LABEL_WINDOW_SELECT" \
+    "$LABEL_ENTIRE_SCREEN_CLIPBOARD" \
+    "$LABEL_SELECT_REGION_CLIPBOARD" \
+    "$LABEL_WINDOW_ACTIVE_CLIPBOARD" \
+    "$LABEL_WINDOW_SELECT_CLIPBOARD"
+}
+
+if [ ! -x "$(command -v $SCREENCAPTURE_SCRIPT)" ]; then
+  echo "screencapture script not found" 
+  exit 1 # 20260907-190345: send notification
+fi
+selection=$(show-menu | dmenu -i -p "$PROMPT")
+case $selection in
+  "$LABEL_ENTIRE_SCREEN" ) $SCREENCAPTURE_SCRIPT -e ;;
+  "$LABEL_SELECT_REGION" ) $SCREENCAPTURE_SCRIPT -i ;;
+  "$LABEL_WINDOW_ACTIVE" ) $SCREENCAPTURE_SCRIPT -w ;;
+  "$LABEL_WINDOW_SELECT" ) $SCREENCAPTURE_SCRIPT -iw ;;
+  "$LABEL_ENTIRE_SCREEN_CLIPBOARD" ) $SCREENCAPTURE_SCRIPT -ec ;;
+  "$LABEL_SELECT_REGION_CLIPBOARD" ) $SCREENCAPTURE_SCRIPT -ic ;;
+  "$LABEL_WINDOW_ACTIVE_CLIPBOARD" ) $SCREENCAPTURE_SCRIPT -wc ;;
+  "$LABEL_WINDOW_SELECT_CLIPBOARD" ) $SCREENCAPTURE_SCRIPT -wic ;;
+  *) exit 1 ;; # 20260907-190345: send notification
+esac
