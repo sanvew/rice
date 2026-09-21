@@ -13,6 +13,7 @@ MODULE_CONFIG="
   fontconfig
   sxhkd
   script
+  dunst
   themes
   gtk3
   mpv

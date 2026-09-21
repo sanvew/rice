@@ -1,0 +1,8 @@
+[urgency_low]
+  # default_icon = dialog-information
+[urgency_normal]
+  # default_icon = dialog-information
+[urgency_critical]
+  timeout = 30
+  # default_icon = dialog-warning
+

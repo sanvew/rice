@@ -1,8 +1,8 @@
 # introduce dunst notification daemon
 
-- STATUS: OPEN
+- STATUS: CLOSED
 - PRIORITY: 100
-- TAGS: idea
+- TAGS: idea, notification, scope
 
 [dunst](https://github.com/dunst-project/dunst)
 
