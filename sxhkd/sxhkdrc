@@ -67,7 +67,7 @@ alt + shift + ctrl + 3
     screencapture -ec
 
 alt + shift + ctrl + 4
-    screencapture -rc
+    screencapture -ic
 
 ########################################
 # System keybindings                   #

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PROMPT="󰌾 gopass:"
+PROMPT="󰌾🔖 gopass totp:"
 
 set-gtk-pinentry() {
   printf '%s\n' gtk > "$XDG_RUNTIME_DIR/pinentry-mode"
@@ -10,6 +10,6 @@ set-gtk-pinentry() {
 entry="$(gopass ls --flat | dmenu -i -p "$PROMPT" -l 0)"
 if [ -n "$entry" ]; then
   set-gtk-pinentry
-  gopass show -c "$entry"
+  gopass totp -c "$entry"
+  # TODO: 20260922-000151: send notifcation if entry doesnt have totp
 fi
-

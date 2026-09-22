@@ -51,9 +51,9 @@ parse-options() {
 }
 
 executable-exist() {
-  _exec=$1; msg=$2
+  _exec=$1
   if [ ! -x "$(command -v "$_exec")" ]; then
-    echo "$msg executable not found."
+    echo "\"$_exec\" executable not found."
     exit 1
   fi
 }
@@ -63,12 +63,12 @@ screenshot-dest() {
     echo "-f image2pipe -"
   else
     mkdir -p "$SCREENSHOT_PATH"
-    echo "$SCREENSHOT_PATH"/$(date +%Y%m%d%H%M%S)."$SCREENSHOT_EXT"
+    echo "$SCREENSHOT_PATH"/$(date +"$DATE_FMT")."$SCREENSHOT_EXT"
   fi
 }
 
 select-region() {
-  executable-exist "$SLOP_EXEC" slop
+  executable-exist "$SLOP_EXEC"
   read x y w h <<< $("$SLOP_EXEC" -f '%x %y %w %h')
   echo "-s "${w}x${h}" -i "$DISPLAY+$x,$y""
 }
@@ -76,17 +76,17 @@ select-region() {
 select-window() {
   WIN_ID=
   if [ "$INTERACTIVE_OPTION" -eq 1 ]; then
-    executable-exist "$SLOP_EXEC" slop
+    executable-exist "$SLOP_EXEC"
     read WIN_ID <<< $("$SLOP_EXEC" -f '%i')
   else
-    executable-exist "$XDOTOOL_EXEC" xdotool
+    executable-exist "$XDOTOOL_EXEC"
     WIN_ID=$("$XDOTOOL_EXEC" getactivewindow)
   fi
   echo "-window_id "$WIN_ID" -i "$DISPLAY""
 }
 
 screenshot() {
-  executable-exist "$FFMPEG_EXEC" ffmpeg
+  executable-exist "$FFMPEG_EXEC"
   CMD=""$FFMPEG_EXEC" -hide_banner -loglevel error -f x11grab"
   case "$CAPTURE_MODE" in
     e) [ "$INTERACTIVE_OPTION" -eq 1 ] && CMD="$CMD $(select-region)" || CMD="$CMD -i $DISPLAY" ;;
@@ -96,9 +96,9 @@ screenshot() {
       exit 1
       ;;
   esac
-  CMD="$CMD -frames:v 1 -vcodec png $(screenshot-dest)"
+  CMD="$CMD -frames:v 1 -vcodec "$SCREENSHOT_EXT" $(screenshot-dest)"
   if [ "$CLIPBOARD_OPTION" -eq 1 ]; then
-    executable-exist "$XCLIP_EXEC" xclip
+    executable-exist "$XCLIP_EXEC"
     $CMD | "$XCLIP_EXEC" -selection clipboard -t image/$SCREENSHOT_EXT
   else
     $CMD
