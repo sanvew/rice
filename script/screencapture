@@ -40,7 +40,7 @@ parse-options() {
         ;;
       i) INTERACTIVE_OPTION=1 ;;
       c) CLIPBOARD_OPTION=1 ;;
-      h) usage ;;
+      h) usage ; exit 0 ;;
       \?) echo "illegal option: -$OPTARG" ; usage ; exit 1 ;;
       :) echo "option -$OPTARG requires an argument"; exit 1 ;;
     esac
